@@ -1,0 +1,41 @@
+{
+    "name": "community-app",
+    "version": "1.0.0",
+    "description": "simple pet-project",
+    "main": "app.js",
+    "port": "8080",
+    "angular": "angular",
+    "react": "react",
+    "type": "module",
+    "scripts": {
+        "start": "set PORT=%npm_package_port% && node app",
+        "start_dev": "set PORT=%npm_package_port% && nodemon app",
+        "start_dev_angular": "set PORT=%npm_package_port% && set clientApp=%npm_package_angular% && nodemon app",
+        "start_dev_react": "set PORT=%npm_package_port% && set clientApp=%npm_package_react% && nodemon app",
+        "start_dev_debagger": "set PORT=%npm_package_port% && nodemon --inspect-brk app.js ",
+        "start_server_db": "mongod --config ./config/mongod.cfg",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Nick Shchepetkov",
+    "license": "ISC",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.19.0",
+        "connect-mongodb-session": "^2.1.1",
+        "csurf": "^1.10.0",
+        "eslint-config-standard": "^16.0.1",
+        "express": "^4.17.1",
+        "express-session": "^1.16.2",
+        "express-validator": "^5.3.1",
+        "googleapis": "^44.0.0",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.8.3",
+        "multer": "^1.4.1",
+        "nodemailer": "^6.4.2",
+        "socket.io": "^2.3.0"
+    },
+    "devDependencies": {
+        "eslint": "^6.8.0",
+        "nodemon": "^1.19.1"
+    }
+}
