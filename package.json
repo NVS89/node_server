@@ -1,5 +1,5 @@
 {
-    "name": "community-app",
+    "name": "node_server",
     "version": "1.0.0",
     "description": "simple pet-project",
     "main": "app.js",
@@ -14,7 +14,9 @@
         "start_dev_react": "set PORT=%npm_package_port% && set clientApp=%npm_package_react% && nodemon app",
         "start_dev_debagger": "set PORT=%npm_package_port% && nodemon --inspect-brk app.js ",
         "start_server_db": "mongod --config ./config/mongod.cfg",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "docker_build":"docker build -t %npm_package_name% .",
+        "docker_run":"docker run -p %npm_package_port%:%npm_package_port% -d %npm_package_name%"
     },
     "author": "Nick Shchepetkov",
     "license": "ISC",
