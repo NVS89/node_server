@@ -19,19 +19,19 @@ server.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
     res.header(
-        'Access-Control-Allow-Headers', 
+        'Access-Control-Allow-Headers',
         'Content-Type, Accept, Cache-Control, Content-Disposition, Authorization'
     );
     next();
 });
 
 
-// routes 
+// routes
 // server.use('/auth', authRoutes);
 // server.use('/user', userRoutes);
 server.use('/dashboard', messagesRouter);
 
-const appServer = server.listen(port, function () {
+server.listen(port, () => {
     console.log('====================================');
     console.log(`server start on port ${port}`);
     console.log('====================================');
