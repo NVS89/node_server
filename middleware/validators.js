@@ -9,6 +9,44 @@ export default class Validator {
         const validators = [];
         for (const parameter of params) {
             switch (parameter) {
+                case '_id':
+                    validators.push(
+                        param('userId').exists()
+                    );
+                    break;
+                case 'userId':
+                    validators.push(
+                        body('_id')
+                            .isString()
+                            .trim()
+                    );
+                    break;
+                case 'name':
+                    validators.push(
+                        body('name')
+                            .isAlpha()
+                            .withMessage('Name should be alphabetical')
+                            .isLength({
+                                min: validatorConf.name.min,
+                                max: validatorConf.name.max
+                            })
+                            .withMessage('Name should include min 2 and 18 max characters')
+                            .trim()
+                    );
+                    break;
+                case 'surename':
+                    validators.push(
+                        body('surename')
+                            .isAlpha()
+                            .withMessage('Surename should be alphabetical')
+                            .isLength({
+                                min: validatorConf.surename.min,
+                                max: validatorConf.surename.max
+                            })
+                            .withMessage('Name should include min 2 and 18 max characters')
+                            .trim()
+                    );
+                    break;
                 case 'login':
                     validators.push(
                         body('login')
@@ -27,11 +65,22 @@ export default class Validator {
                             .trim(),
                     );
                     break;
+                case 'phone':
+                    validators.push(
+                        body('phone')
+                            .isLength({
+                                min: validatorConf.phone.min,
+                                max: validatorConf.phone.max
+                            })
+                            .isString()
+                            .trim()
+                    );
+                    break;
                 case 'email':
                     validators.push(
                         body('email')
                             .isEmail()
-                            .withMessage('Please enter a valid email')
+                            .withMessage('invalid email')
                             .normalizeEmail(),
                     );
                     break;
