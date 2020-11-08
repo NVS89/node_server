@@ -1,8 +1,10 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 
 //Router Handlers
 import messagesRouter from './routes/messages/messages.routes.js';
+import { config } from './config/config.js';
 
 const server = express();
 const port = process.env.PORT || 8080;
@@ -31,8 +33,17 @@ server.use((req, res, next) => {
 // server.use('/user', userRoutes);
 server.use('/dashboard', messagesRouter);
 
-server.listen(port, () => {
-    console.log('====================================');
-    console.log(`server start on port ${port}`);
-    console.log('====================================');
-});
+mongoose.set('useUnifiedTopology', true);
+mongoose.connect(config.dbConnect, { useNewUrlParser: true }).then(
+    ()=>{
+        server.listen(port, () => {
+            console.log('====================================');
+            console.log(`server start on port ${port}`);
+            console.log('====================================');
+        });
+    }
+).catch(
+    (error) => {
+        throw new Error(error);
+    }
+);
